@@ -1,0 +1,29 @@
+<style>
+    #auth{
+        float: right;
+    }
+</style>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="/">YelpCities</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+              
+              <a class="nav-link" href="/campgrounds">City</a>
+              <a class="nav-link" href="/campgrounds/new">New City</a>
+          </div>
+          <div class="navbar-nav">
+            <% if(!currentUser) {%>
+              <a id="auth" class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+              <a id="auth" class="nav-link" href="/register"><i class="fas fa-user-plus"></i> Register</a>
+              <% } else {%>
+              <a id="auth" class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+              <% } %>
+          </div>
+      </div>
+  </div>
+</nav>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Campgrounds Home</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- CSS only -->
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
+        <!-- JavaScript Bundle with Popper -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> -->
+    </head>
+    <body>
+       
+        <%-include('../partial/header')%>
+        <%- include('../partial/flash.ejs') %> 
+        <%- include('../partial/navbar.ejs') %> 
+        <div id="map" style="width: 100%; height: 400px"></div>
+        <div class="container" style="width: 500px; height: 200px; margin-top: 40px;">
+        <h2 style="text-align: center;">Cities Homepage</h2>
+        
+        
+        <%campgrounds.forEach((campground)=>{%>
+            <!-- <li><%= campground.title %>, <%= campground.location %>"></li> -->
+            <li><a href="/campgrounds/<%= campground._id%>"><%= campground.title%>, <%= campground.location %></a></li>
+            <%})%>
+        </div>
+        <script>
+            const maptoken = '<%-process.env.MAPBOX_TOKEN%>';
+            const campground = {features: <%-JSON.stringify(campgrounds)%>}
+            
+        </script>
+        
+        <script src="/scripts/clustermap.js"></script>
+    </body>
+</html>

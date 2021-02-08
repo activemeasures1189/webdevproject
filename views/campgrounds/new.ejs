@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>New City</title>
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <!-- <style>
+            #Form{
+                padding-top: 50px;
+                width: 50%;
+                margin: 0 auto;
+
+            }
+        </style> -->
+        </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <%-include('../partial/header')%>
+        <%- include('../partial/flash.ejs') %> 
+        <%- include('../partial/navbar.ejs') %> 
+        <div class="container">
+          
+        <form action="/campgrounds" method="POST" id="Form" class="validated-form" enctype="multipart/form-data" novalidate>
+          <h3>New Page</h3>
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" class="form-control" id="title" placeholder="title" name="campground[title]" required>
+                <div class="valid-feedback">Looks good</div>
+              </div>
+              
+              <!-- <div class="mb-3">
+                <label for="image" class="form-label">Image url:</label>
+                <input type="text" class="form-control" id="image" placeholder="image url" name="campground[image]" required>
+              </div> -->
+              <div class="mb-3">
+                <label for="price" class="form-label">Price:</label>
+                <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="text"  class="form-control" name="campground[price]" aria-label="Amount (to the nearest dollar)" placeholder="0.00" required>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="location" class="form-label">Location:</label>
+                <input type="text" class="form-control" id="location" placeholder="location" name="campground[location]" required>
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description:</label>
+                <input type="text" class="form-control" id="description" placeholder="description" name="campground[description]" required>
+              </div>
+              <div class="mb-3">
+                <div class="form-file custom-file">
+                    <input type="file" class="form-file-input" id="image" name="image" multiple>
+                    <label class="form-file-label" for="image">
+                        <span class="form-file-text custom-file-label">Choose image(s)...</span>
+                        <span class="form-file-button">Browse</span>
+                    </label>
+                </div>
+            </div>
+            <button class="btn btn-success">Add City</button>
+            <a type="button" href="/campgrounds" class="btn btn-secondary">View Cities!</a>
+            </form>
+        </div>
+        
+        <script>
+          // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+  bsCustomFileInput.init()
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.validated-form')
+
+  // Loop over them and prevent submission
+  Array.from(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+        </script>
+    </body>
+</html>
