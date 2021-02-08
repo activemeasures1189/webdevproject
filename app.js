@@ -18,6 +18,7 @@ var session = require('express-session')
 var cookieParser = require('cookie-parser')
 var flash = require('connect-flash');
 const catchAsync = require('./utils/catchAsync');
+const ExpressError = require('./utils/expressError');
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
