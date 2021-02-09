@@ -23,8 +23,22 @@ const passport = require('passport');
 const localStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
 const {isloggedin, validateReview, validateCampground} = require('./middleware');
+const {MongoStore} = require('connect-mongo')
+const MongoDBStore = require('connect-mongo')(session);
+const dbUrl = process.env.DB_URL ||  'mongodb://localhost:27017/yelpcamp'
+
+const secret = process.env.SECRET || 'thisisnotagoodsecret'
+const store = new MongoDBStore({
+    url: dbUrl,
+    secret,
+    touchAfter: 24 * 60 * 60
+});
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e)
+})
 const sessionOptions = {
-    secret: 'thisisnotagoodsecret',
+    store,
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -48,8 +62,10 @@ const port = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 
+
 // DATABASE URL
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelpcamp';
+// const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelpcamp';
+
 // DATABASE CONNECT
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
