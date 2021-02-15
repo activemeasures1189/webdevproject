@@ -58,6 +58,7 @@ app.use(express.static(path.join(__dirname,'public')));
 passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(bodyParser.json())
 const port = process.env.PORT || 3000;
