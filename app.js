@@ -25,9 +25,9 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const {isloggedin, validateReview, validateCampground} = require('./middleware');
 const {MongoStore} = require('connect-mongo')
 const MongoDBStore = require('connect-mongo')(session);
-// const dbUrl = process.env.DB_URL ||  'mongodb://localhost:27017/yelpcamp'
+ const dbUrl = process.env.DB_URL ||  'mongodb://localhost:27017/yelpcamp'
 // DATABASE URL
-const dbUrl = 'mongodb://localhost:27017/yelpcamp';
+// const dbUrl = 'mongodb://localhost:27017/yelpcamp';
 
 const secret = process.env.SECRET || 'thisisnotagoodsecret'
 const store = new MongoDBStore({
